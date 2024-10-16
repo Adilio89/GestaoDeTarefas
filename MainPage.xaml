@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestaoDeTarefas.MainPage">
+
+    <StackLayout Padding="10">
+
+        <Label Text="Gerenciador de Tarefas" 
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+        <Entry x:Name="txtTarefa" 
+               Placeholder="Descrição da Tarefa" />
+
+        <Picker x:Name="cmbPriority" 
+                Title="Prioridade">
+            <Picker.Items>
+                <x:String>Alta</x:String>
+                <x:String>Média</x:String>
+                <x:String>Baixa</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <DatePicker x:Name="dtpDueDate"/>
+
+        <Button Text="Adicionar Tarefa" Clicked="AddTask_Clicked" />
+        <Button Text="Remover Tarefa" Clicked="RemoveTask_Clicked" />
+        <Button Text="Salvar Tarefas" Clicked="SaveTasks_Clicked" />
+        <Button Text="Carregar Tarefas" Clicked="LoadTasks_Clicked" />
+
+
+        <ListView x:Name="listViewTasks"
+                  ItemsSource="{Binding Tarefas}"
+                  SelectedItem="{Binding SelectedTask}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Descricao}"
+                              Detail="{Binding Vencimento, StringFormat='{0:dd/MM/yyyy}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>
